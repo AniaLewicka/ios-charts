@@ -78,7 +78,7 @@ public class BubbleChartRenderer: ChartDataRendererBase
         // calcualte the full width of 1 step on the x-axis
         let maxBubbleWidth: CGFloat = abs(_sizeBuffer[1].x - _sizeBuffer[0].x)
         let maxBubbleHeight: CGFloat = abs(viewPortHandler.contentBottom - viewPortHandler.contentTop)
-        let referenceSize: CGFloat = min(maxBubbleHeight, maxBubbleWidth)
+        let referenceSize: CGFloat = min(maxBubbleHeight, maxBubbleWidth, 45)
         
         for (var j = minx; j < maxx; j++)
         {
@@ -203,7 +203,7 @@ public class BubbleChartRenderer: ChartDataRendererBase
         {
             let dataSet = bubbleData.getDataSetByIndex(indice.dataSetIndex) as! BubbleChartDataSet!
             
-            if (dataSet === nil || !dataSet.isHighlightEnabled)
+            if (dataSet === nil || !dataSet.isHighlightEnabled || dataSet.yVals.count == 0)
             {
                 continue
             }
